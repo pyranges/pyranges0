@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'pyranges'
+project = 'pyranges0'
 copyright = '2023, Endre Bakken Stovner and Marco Mariotti'
 author = 'Endre Bakken Stovner and Marco Mariotti'
 
@@ -53,6 +53,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_title = 'pyranges0'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
