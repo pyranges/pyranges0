@@ -3,7 +3,7 @@ Developer guide
 
 PyRanges is mainly developed by Endre Bakken Stovner and by the Comparative Genomics lab of 
 Marco Mariotti. It follows the guidelines for open source software, and external contributors 
-are welcome. The code is centralized on github, at https://github.com/pyranges/pyranges
+are welcome. The code is centralized on GitHub, at https://github.com/pyranges/pyranges0
 
 Bugs and feature requests can be reported as github issues. You may also contribute by submitting 
 your own code edits, either to deal with issues or to add new functionalities. The code will be 
@@ -38,8 +38,8 @@ Documentation: docstrings
 
 Python docstrings are widely used to document the rationale, input arguments, and returned values of 
 all functions and methods. The use of a consistent docstring style allows the automatic generation 
-of API documentation, as seen in pyranges documentation at `https://pyranges.readthedocs.io/ 
-<https://pyranges.readthedocs.io/>`_, built through the Sphynx software.
+of API documentation, as seen in the pyranges0 documentation at `https://pyranges0.readthedocs.io/ 
+<https://pyranges0.readthedocs.io/>`_, built through the Sphinx software.
 
 Pyranges adopts the NumPy/SciPy-style: `https://numpydoc.readthedocs.io/en/latest/format.html 
 <https://numpydoc.readthedocs.io/en/latest/format.html>`_. It is important that code contributors 
@@ -90,8 +90,8 @@ automated documentation:
 2. Create and setup your own PyRanges fork
 ------------------------------------------
 
-The easiest way to do this is through github. Login into the github website if you aren't already, 
-then visit `https://github.com/pyranges/pyranges <https://github.com/pyranges/pyranges>`_, and 
+The easiest way to do this is through GitHub. Login into the GitHub website if you aren't already, 
+then visit `https://github.com/pyranges/pyranges0 <https://github.com/pyranges/pyranges0>`_, and 
 click "Fork" on the top right. Fill the form and confirm. In the page of your new fork, find the 
 **<> Code** button, and copy the https address. On your computer, create a new folder dedicated 
 to the project, then clone your fork inside it:
@@ -102,14 +102,14 @@ to the project, then clone your fork inside it:
 	cd pr_debug
 	git clone PASTE_GITHUB_HTTPS
 
-Next, cd into your pyranges fork, and install it locally with pip as shown below. By using pip 
+Next, cd into your pyranges0 fork, and install it locally with pip as shown below. By using pip 
 option ``-e``, your installation is in "editable" mode: any changes you make to your pyranges code 
 will be immediately reflected in your environment. In other words, you won't need to re-run pip 
 install every time you change something in the code.
 
 .. code:: bash
 
-	cd pyranges
+	cd pyranges0
 	pip install -e .
 
 
@@ -125,7 +125,7 @@ imports pyranges, making sure you're in the prdev conda environment.
 4. Format and lint code
 -----------------------
 
-Run these commands from inside your pyranges folder (which has a pyranges subfolder):
+Run these commands from inside your pyranges0 folder (which has a pyranges subfolder):
 
 .. code:: bash
 
@@ -139,7 +139,7 @@ Run these commands from inside your pyranges folder (which has a pyranges subfol
 
 Your code edits may warrant edits in the pyranges docstrings. In this case, it is compelling to 
 locally check that the automatically generated documentation is built appropriately. Inside the 
-pyranges folder, run these commands:
+pyranges0 folder, run these commands:
 
 .. code:: bash 
 	
@@ -148,7 +148,7 @@ pyranges folder, run these commands:
 	cd -
 
 If the "make" command has no major errors, it will generate the full pyranges documentation in the 
-form of html pages, identical to `https://pyranges.readthedocs.io/ <https://pyranges.readthedocs.io/>`_. 
+form of html pages, identical to `https://pyranges0.readthedocs.io/ <https://pyranges0.readthedocs.io/>`_. 
 Open the file docs/build/html/index.html with a browser to inspect all the parts that may have 
 been affected by your changes, and fix any potential problems. To know more about its inner workings, 
 read about the Sphynx system.
@@ -229,19 +229,19 @@ Finally, push to your remote repository, i.e. update your online fork at github,
 
 	git push
 
-You will be requested your github credentials. Note that your online password may not work; in this 
-case, google how to set up a github token that you can use.
+You will be requested your GitHub credentials. Note that your online password may not work; in this 
+case, search how to set up a GitHub token that you can use.
 
 
 9. Open a pull request
 ----------------------
 
 The easiest way to open a pull request is through the github website. Go to **your** 
-pyranges fork on github, then find the "Contribute" button (near the **<> Code** button). Click 
+pyranges fork on GitHub, then find the "Contribute" button (near the **<> Code** button). Click 
 it, and select **Open pull request**.
 
 In the newly opened page, carefully check that source and destination are correctly selected. The 
-Base repository should be pyranges/pyranges (i.e. the main pyranges repo), and the Head repository 
+Base repository should be pyranges/pyranges0 (i.e. the main pyranges repo), and the Head repository 
 should be your fork. If you worked on non-master git branches, select them here.
 
 In the comments, write a summary of the introduced changes and their rationale, tagging any related 
@@ -256,7 +256,7 @@ Every now and then, the core development team considers that a new pyranges vers
 released. To do so:
 
 - Update the version number in the pyproject.toml file
-- Find the "Build and upload to PyPI" workflow in the left menu of the github actions at `https://github.com/pyranges/pyranges/actions/ <https://github.com/pyranges/pyranges/actions/>`_
+- Find the "Build and upload to PyPI" workflow in the left menu of the GitHub actions at `https://github.com/pyranges/pyranges0/actions/ <https://github.com/pyranges/pyranges0/actions/>`_
 - Click the "Run workflow" button on the right
 
 Next, check that everything worked correctly, by confirming that a new pyranges installation via 

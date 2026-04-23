@@ -33,4 +33,4 @@ where = ["."]
 inputs = ['pyranges']
 
 [project.urls]
-Homepage="http://github.com/pyranges/pyranges"
+Homepage="https://github.com/pyranges/pyranges0"

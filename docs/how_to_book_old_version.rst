@@ -6,7 +6,7 @@ How-to-book
 Introduction to PyRanges
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is the PyRanges tutorial. For docs, see: `https://pyranges.readthedocs.io/en/latest/`
+This is the PyRanges tutorial. For docs, see: `https://pyranges0.readthedocs.io/en/latest/`
 
 
 .. contents:: Contents of How-to pages
@@ -1314,6 +1314,5 @@ RLEs: run length encodings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [outline as advanced usage. Put everything related to RLEs in a single chapter; keep as last even if you add further chapters]
-
 
 

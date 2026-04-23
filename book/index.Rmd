@@ -45,5 +45,4 @@ The PyRanges documentation is structured in three parts:
 
 1. The tutorial, on the next page, recommended for all new users
 2. The how-to pages, further below, where functionalities are grouped by topic
-3. The [API reference](https://pyranges.readthedocs.io/), where all methods are explained in detail
-
+3. The [API reference](https://pyranges0.readthedocs.io/en/latest/), where all methods are explained in detail

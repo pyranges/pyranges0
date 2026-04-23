@@ -9,7 +9,7 @@ PyRanges is a Python library specifically designed for efficient and intuitive m
 particularly genomic intervals (like genes, genomic features, or reads).
 The library is optimized for fast querying and manipulation of genomic annotations.
 
-PyRanges is open source, and hosted at github: https://github.com/pyranges/pyranges
+PyRanges is open source, and hosted at GitHub: https://github.com/pyranges/pyranges0
 
 
 Citation
@@ -30,7 +30,7 @@ Documentation outline
 Asking for help
 ~~~~~~~~~~~~~~~
 
-If you encounter bugs, or the documentation is not enough a cannot accomplish a specific task of interest, or if you'd like new features implemented, open an Issue at github: https://github.com/pyranges/pyranges/issues
+If you encounter bugs, or the documentation is not enough and you cannot accomplish a specific task of interest, or if you'd like new features implemented, open an issue on GitHub: https://github.com/pyranges/pyranges0/issues
 
 
 .. toctree::
