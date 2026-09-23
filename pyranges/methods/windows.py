@@ -8,8 +8,8 @@ def _windows(df, **kwargs):
     idxs, starts, ends = makewindows(df.index.values, df.Start.values, df.End.values, window_size)
 
     df = df.reindex(idxs)
-    df.loc[:, "Start"] = starts
-    df.loc[:, "End"] = ends
+    df["Start"] = starts
+    df["End"] = ends
 
     return df
 
@@ -34,8 +34,8 @@ def _tiles(df, **kwargs):
     idxs, starts, ends = maketiles(df.index.values, df.Start.values, df.End.values, window_size)
 
     df = df.reindex(idxs)
-    df.loc[:, "Start"] = starts
-    df.loc[:, "End"] = ends
+    df["Start"] = starts
+    df["End"] = ends
 
     if overlap:
         df = _intersect_tile(df)

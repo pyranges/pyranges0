@@ -529,7 +529,7 @@ def rowbased_rankdata(data):
     dense = pd.DataFrame(dense)
 
     ranks = []
-    for _nonzero, nzdf in obs.groupby(nonzero, sort=False, observed=False):
+    for _nonzero, nzdf in obs.groupby(nonzero, sort=False, observed=True):
         nz = np.apply_along_axis(lambda r: np.nonzero(r)[0], 1, nzdf)
 
         _count = np.column_stack([nz, np.ones(len(nz)) * len_r])
@@ -584,17 +584,17 @@ def simes(df, groupby, pcol, keep_position=False):
 
     >>> gr = pr.from_string(s)
     >>> gr
-    +--------------+-----------+-----------+--------------+------------+-------------+
-    |   Chromosome |     Start |       End | Strand       | Gene       |      PValue |
-    |   (category) |   (int64) |   (int64) | (category)   | (object)   |   (float64) |
-    |--------------+-----------+-----------+--------------+------------+-------------|
-    |            1 |        10 |        20 | +            | P53        |     0.0001  |
-    |            1 |        20 |        20 | +            | P53        |     0.0002  |
-    |            1 |        30 |        20 | +            | P53        |     0.0003  |
-    |            2 |        60 |        65 | -            | FOX        |     0.05    |
-    |            2 |        70 |        75 | -            | FOX        |     1e-07   |
-    |            2 |        80 |        90 | -            | FOX        |     2.1e-06 |
-    +--------------+-----------+-----------+--------------+------------+-------------+
+    +--------------+-----------+-----------+--------------+---------+-------------+
+    |   Chromosome |     Start |       End | Strand       | Gene    |      PValue |
+    |   (category) |   (int64) |   (int64) | (category)   | (str)   |   (float64) |
+    |--------------+-----------+-----------+--------------+---------+-------------|
+    |            1 |        10 |        20 | +            | P53     |     0.0001  |
+    |            1 |        20 |        20 | +            | P53     |     0.0002  |
+    |            1 |        30 |        20 | +            | P53     |     0.0003  |
+    |            2 |        60 |        65 | -            | FOX     |     0.05    |
+    |            2 |        70 |        75 | -            | FOX     |     1e-07   |
+    |            2 |        80 |        90 | -            | FOX     |     2.1e-06 |
+    +--------------+-----------+-----------+--------------+---------+-------------+
     Stranded PyRanges object has 6 rows and 6 columns from 2 chromosomes.
     For printing, the PyRanges was sorted on Chromosome and Strand.
 
@@ -606,13 +606,13 @@ def simes(df, groupby, pcol, keep_position=False):
 
     >>> gr.apply(lambda df:
     ... pr.stats.simes(df, "Gene", "PValue", keep_position=True))
-    +--------------+-----------+-----------+-------------+--------------+------------+
-    |   Chromosome |     Start |       End |       Simes | Strand       | Gene       |
-    |   (category) |   (int64) |   (int64) |   (float64) | (category)   | (object)   |
-    |--------------+-----------+-----------+-------------+--------------+------------|
-    |            1 |        10 |        20 |      0.0001 | +            | P53        |
-    |            2 |        60 |        90 |      1e-07  | -            | FOX        |
-    +--------------+-----------+-----------+-------------+--------------+------------+
+    +--------------+-----------+-----------+-------------+--------------+---------+
+    |   Chromosome |     Start |       End |       Simes | Strand       | Gene    |
+    |   (category) |   (int64) |   (int64) |   (float64) | (category)   | (str)   |
+    |--------------+-----------+-----------+-------------+--------------+---------|
+    |            1 |        10 |        20 |      0.0001 | +            | P53     |
+    |            2 |        60 |        90 |      1e-07  | -            | FOX     |
+    +--------------+-----------+-----------+-------------+--------------+---------+
     Stranded PyRanges object has 2 rows and 6 columns from 2 chromosomes.
     For printing, the PyRanges was sorted on Chromosome and Strand.
     """
