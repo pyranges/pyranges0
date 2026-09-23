@@ -8,10 +8,11 @@ jobs:
   install_and_test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       # You can use PyPy versions in python-version.
       # For example, pypy2.7 and pypy3.9
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - uses: actions/checkout@v3
