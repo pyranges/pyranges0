@@ -1,3 +1,6 @@
+# 0.1.7 (25.10.2026)
+- Fix k_nearest, overlap and the other ncls- and sorted_nearest-backed operations under pandas 3.1 (ValueError: ndarray is not C-contiguous); requires ncls >= 0.0.71 and sorted_nearest >= 0.0.42; the coverage extra requires pyrle >= 0.0.46
+
 # 0.1.6 (23.09.2026)
 - Support pandas 3 (and keep supporting pandas 1.5 and 2.x); the pandas<3 pin is removed
 - Fix empty (Chromosome, Strand) groups appearing in PyRanges under pandas 3, which broke extend, slack, stranded joins and more
