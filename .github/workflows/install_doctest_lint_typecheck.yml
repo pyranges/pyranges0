@@ -18,6 +18,15 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      # Test the companion PRs before their version bumps are published to PyPI.
+      # Remove this step once ncls 0.0.71, sorted_nearest 0.0.42 and pyrle 0.0.46 are released.
+      - name: Install backend PR revisions
+        if: github.event_name == 'pull_request'
+        run: |
+          python -m pip install \
+            "git+https://github.com/pyranges/ncls.git@476c1a32b2a9bdca397b08d26386e32c5f66f878" \
+            "git+https://github.com/pyranges/sorted_nearest.git@73575c771192235d6be0542fb5b9fe04a9470e39" \
+            "git+https://github.com/pyranges/pyrle.git@41d1a8049464952b2d47064a7828d49a6359bc86"
       - name: Install
         run: pip install .
       - name: Use pandas 2 on the oldest tested Python
