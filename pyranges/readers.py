@@ -387,7 +387,7 @@ def read_gtf(
             ignore_bad=ignore_bad,
         )
     else:
-        gr = read_gtf_restricted(f, _skiprows, as_df=False, nrows=None)
+        gr = read_gtf_restricted(f, _skiprows, as_df=as_df, nrows=nrows)
 
     return gr
 
@@ -515,6 +515,11 @@ def read_gtf_restricted(f, skiprows, as_df=False, nrows=None):
         skiprows=skiprows,
         nrows=nrows,
     )
+
+    if nrows == 0:
+        # A chunked reader can return no chunks for a zero row limit.
+        with df_iter as reader:
+            df_iter = [reader.read(0)]
 
     dfs = []
     for df in df_iter:
