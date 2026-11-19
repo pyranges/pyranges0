@@ -1,4 +1,5 @@
 # Unreleased
+- Honor as_df and nrows in restricted read_gtf (#414).
 - Preserve strandedness after a DataFrame round trip when all rows have a plus or minus strand (#413).
 
 # 0.1.7 (25.10.2026)
