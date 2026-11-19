@@ -1,6 +1,7 @@
-# Unreleased
-- Honor as_df and nrows in restricted read_gtf (#414).
-- Preserve strandedness after a DataFrame round trip when all rows have a plus or minus strand (#413).
+# 0.1.8 (19.11.2026)
+- Preserve strandedness after a DataFrame round trip when every row has a plus or minus strand, even if the categorical Strand column has unused categories (#413).
+- Honor as_df and nrows in read_gtf(full=False), including a zero row limit (#414).
+- Fix the argument order in the fisher_exact docstring example (#411).
 
 # 0.1.7 (25.10.2026)
 - Fix k_nearest, overlap and the other ncls- and sorted_nearest-backed operations under pandas 3.1 (ValueError: ndarray is not C-contiguous); requires ncls >= 0.0.71 and sorted_nearest >= 0.0.42; the coverage extra requires pyrle >= 0.0.46

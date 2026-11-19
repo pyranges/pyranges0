@@ -24,7 +24,7 @@ copyright = '2023, Endre Bakken Stovner and Marco Mariotti'
 author = 'Endre Bakken Stovner and Marco Mariotti'
 
 # The full version, including alpha/beta/rc tags
-release = ' 0.0.124'
+release = '0.1.8'
 
 
 # -- General configuration ---------------------------------------------------

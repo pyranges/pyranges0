@@ -7,9 +7,9 @@ Version 1 will soon replace version 0. We encourage existing v0 users to migrate
 
 ## Recent changes
 
-Version 0.1.6 supports pandas 3 (pandas 1.5 and 2.x are still supported). With pandas 3, `to_rle` and coverage need pyrle >= 0.0.45. See [CHANGELOG.txt](CHANGELOG.txt) for all changes.
+Version 0.1.8 preserves strandedness when converting to a DataFrame and back, and honors `as_df` and `nrows` in `read_gtf(full=False)`. See [CHANGELOG.txt](CHANGELOG.txt) for all changes.
 
-Install coverage support with `pip install 'pyranges[coverage]'`.
+PyRanges supports pandas 1.5, 2.x, and 3.x. Install coverage support with `pip install 'pyranges[coverage]'`, which requires pyrle >= 0.0.46.
 
 ## Introduction
 
