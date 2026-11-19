@@ -84,22 +84,8 @@ def create_pyranges_df(chromosomes, starts, ends, strands=None):
 
 
 def check_strandedness(df):
-    """Check whether strand contains '.'"""
-
-    if "Strand" not in df:
-        return False
-
-    contains_more_than_plus_minus_in_strand_col = False
-
-    if str(df.Strand.dtype) == "category" and (set(df.Strand.cat.categories) - set("+-")):
-        contains_more_than_plus_minus_in_strand_col = True
-    elif not ((df.Strand == "+") | (df.Strand == "-")).all():
-        contains_more_than_plus_minus_in_strand_col = True
-
-        # if contains_more_than_plus_minus_in_strand_col:
-        #     logging.warning("Strand contained more symbols than '+' or '-'. Not supported (yet) in PyRanges.")
-
-    return not contains_more_than_plus_minus_in_strand_col
+    """Return whether all rows have a plus or minus strand."""
+    return "Strand" in df and df.Strand.isin(["+", "-"]).all()
 
 
 def _init(
