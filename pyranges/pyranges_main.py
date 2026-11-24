@@ -2271,10 +2271,11 @@ class PyRanges:
             information. The default, None, means use "same" if both PyRanges are strande,
             otherwise ignore the strand information.
 
-        how : {None, "left", "right"}, default None, i.e. "inner"
+        how : {None, "left", "right", "outer"}, default None, i.e. "inner"
 
             How to handle intervals without overlap. None means only keep overlapping intervals.
-            "left" keeps all intervals in self, "right" keeps all intervals in other.
+            "left" keeps all intervals in self, "right" keeps all intervals in other and "outer"
+            keeps all intervals in both.
 
         report_overlap : bool, default False
 
@@ -2398,7 +2399,7 @@ class PyRanges:
         For printing, the PyRanges was sorted on Chromosome.
         """
 
-        from pyranges.methods.join import _write_both
+        from pyranges.methods.join import _write_both, _write_missing_in_self
 
         kwargs = {
             "strandedness": strandedness,
@@ -2424,13 +2425,34 @@ class PyRanges:
 
         how = kwargs.get("how")
 
+        add_missing = how in ["right", "outer"] and len(self) > 0
+
+        if add_missing:
+            other = other.copy()
+            other.__order__ = np.arange(len(other))
+
         if how in ["left", "outer"]:
             kwargs["example_header_other"] = other.head(1).df
-        if how in ["right", "outer"]:
-            kwargs["example_header_self"] = self.head(1).df
 
-        dfs = pyrange_apply(_write_both, self, other, **kwargs)
-        gr = PyRanges(dfs)
+        if add_missing:
+            kwargs["example_header_self"] = self.head(1).df
+            # the rows of other without overlap are added below, as they can be on
+            # chromosomes or strands that do not exist in self
+            kwargs["how"] = "left" if how == "outer" else None
+
+            gr = PyRanges(pyrange_apply(_write_both, self, other, **kwargs))
+            missing = other.overlap(self, strandedness=strandedness, invert=True, nb_cpu=nb_cpu)
+
+            dfs = [] if gr.empty else [gr.df]
+            dfs += [_write_missing_in_self(df, **kwargs) for df in missing.dfs.values()]
+
+            if dfs:
+                df = pd.concat(dfs)
+                if preserve_order and how == "right":
+                    df = df.sort_values("__order__", kind="stable")
+                gr = PyRanges(df.drop("__order__", axis=1))
+        else:
+            gr = PyRanges(pyrange_apply(_write_both, self, other, **kwargs))
 
         if slack and len(gr) > 0:
             gr.Start = gr.Start__slack

@@ -1,6 +1,7 @@
 # Unreleased
 - Honor as_df and nrows in restricted read_gtf (#414).
 - Preserve strandedness after a DataFrame round trip when all rows have a plus or minus strand (#413).
+- Fix join with how="right" or "outer": rows on chromosomes or strands missing in self were dropped, "outer" added rows with only null values, and rows without overlap were repeated for each strand
 
 # 0.1.7 (25.10.2026)
 - Fix k_nearest, overlap and the other ncls- and sorted_nearest-backed operations under pandas 3.1 (ValueError: ndarray is not C-contiguous); requires ncls >= 0.0.71 and sorted_nearest >= 0.0.42; the coverage extra requires pyrle >= 0.0.46
