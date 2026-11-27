@@ -61,20 +61,33 @@ def fdr(p_vals):
     | (category)   |   (int64) |   (int64) | (category)   |   (float64) |   (float64) |
     |--------------+-----------+-----------+--------------+-------------+-------------|
     | chr3         | 146419383 | 146419483 | -            |      0.004  |    0.005939 |
-    | chr6         |  39800100 |  39800200 | +            |      0.0038 |    0.01128  |
+    | chr6         |  39800100 |  39800200 | +            |      0.0038 |    0.005939 |
     | chr13        |  24537618 |  24537718 | -            |      0.0075 |    0.007506 |
     +--------------+-----------+-----------+--------------+-------------+-------------+
     Stranded PyRanges object has 3 rows and 6 columns from 3 chromosomes.
     For printing, the PyRanges was sorted on Chromosome and Strand.
     """
 
-    from scipy.stats import rankdata  # type: ignore
+    is_series = isinstance(p_vals, pd.Series)
+    arr = np.asarray(p_vals, dtype=float)
+    out = np.full(arr.shape, np.nan, dtype=float)
 
-    ranked_p_values = rankdata(p_vals)
-    fdr = p_vals * len(p_vals) / ranked_p_values
-    fdr[fdr > 1] = 1
+    valid = ~np.isnan(arr)
+    m = int(valid.sum())
+    if m > 0:
+        p = arr[valid]
+        order = np.argsort(p, kind="mergesort")
+        ranks = np.arange(1, m + 1, dtype=float)
+        adjusted = p[order] * (m / ranks)
+        adjusted = np.minimum.accumulate(adjusted[::-1])[::-1]
+        adjusted = np.minimum(adjusted, 1.0)
+        res = np.empty(m, dtype=float)
+        res[order] = adjusted
+        out[valid] = res
 
-    return fdr
+    if is_series:
+        return pd.Series(out, index=p_vals.index, name=p_vals.name)
+    return out
 
 
 def fisher_exact(tp, fp, fn, tn, pseudocount=0):
