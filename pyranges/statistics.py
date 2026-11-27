@@ -635,8 +635,8 @@ def simes(df, groupby, pcol, keep_position=False):
     |   Chromosome |     Start |       End |       Simes | Strand       | Gene    |
     |   (category) |   (int64) |   (int64) |   (float64) | (category)   | (str)   |
     |--------------+-----------+-----------+-------------+--------------+---------|
-    |            1 |        10 |        20 |      0.0001 | +            | P53     |
-    |            2 |        60 |        90 |      1e-07  | -            | FOX     |
+    |            1 |        10 |        20 |      0.0003 | +            | P53     |
+    |            2 |        60 |        90 |      3e-07  | -            | FOX     |
     +--------------+-----------+-----------+-------------+--------------+---------+
     Stranded PyRanges object has 2 rows and 6 columns from 2 chromosomes.
     For printing, the PyRanges was sorted on Chromosome and Strand.
@@ -657,7 +657,7 @@ def simes(df, groupby, pcol, keep_position=False):
     sorter = groupby + [pcol]
 
     sdf = df[positions + sorter].sort_values(sorter)
-    g = sdf.groupby(positions + groupby, observed=False)
+    g = sdf.groupby(groupby, observed=False)
 
     ranks = g.cumcount().values + 1
     size = g.size().values
